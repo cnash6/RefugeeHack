@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('there.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -41,16 +41,30 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+.controller('AppointmentsCtrl', function($scope, Appointments) {
+  $scope.appointments = Appointments;
+
+  $scope.addAppointment = function() {
+    var appointment = {
+      startdate: moment().valueOf(),
+      enddate: moment().valueOf(),
+      therapist: 'Angie',
+      client: 'Fred',
+      interpretter: 'Samuel',
+    };
+    $scope.appointments.$add(appointment);
+  }
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+.controller('AppointmentCtrl', function($scope, $stateParams) {
+})
+
+.controller('PeopleCtrl', function($scope) {
+})
+
+.controller('ChatroomCtrl', function($scope) {
+
+})
+
+
+;
