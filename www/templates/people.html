@@ -1,5 +1,65 @@
 <ion-view view-title="People">
+  <ion-header-bar class="top there-top-bar">
+     <h1 class="title">People</h1>
+   </ion-header-bar>
   <ion-content>
-    <h1>People</h1>
+
+    <div class="bar bar-header item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+        <input type="search" placeholder="Search">
+      </label>
+      <!-- <button class="button button-clear">
+        Cancel
+      </button> -->
+    </div>
+
+    <div style="width: 100%;">
+        <ti-segmented-control on-select="selectRole($index)" style="width: 80%; margin: auto;">
+          <ti-segmented-control-button ng-if="currentUser.role == 'client'" title="'Therapists'" selected></ti-segmented-control-button>
+          <ti-segmented-control-button ng-if="currentUser.role == 'therapist'" title="'Clients'" selected></ti-segmented-control-button>
+          <ti-segmented-control-button  title="'Interpretters'"></ti-segmented-control-button>
+          <ti-segmented-control-button  title="'Observers'"></ti-segmented-control-button>
+        </ti-segmented-control>
+    </div>
+
+    <ion-list ng-show="role === 'therapist'">
+      <ion-item ng-repeat="therapist in therapists" href="#/app/therapist/{{therapist.id}}">
+        <a class="item item-avatar" href="#">
+         <img ng-src="{{therapist.img}}">
+         <h2>{{therapist.name}}</h2>
+       </a>
+      </ion-item>
+    </ion-list>
+
+    <ion-list ng-show="role === 'client'">
+      <ion-item ng-repeat="client in clients" href="#/app/client/{{client.id}}">
+        <a class="item item-avatar" href="#">
+         <img ng-src="{{client.img}}">
+         <h2>{{client.name}}</h2>
+       </a>
+      </ion-item>
+    </ion-list>
+
+    <ion-list ng-show="role === 'interpretter'">
+      <ion-item ng-repeat="interpretter in interpretters" href="#/app/interpretter/{{interpretter.id}}">
+        <a class="item item-avatar" href="#">
+         <img ng-src="{{interpretter.img}}">
+         <h2>{{interpretter.name}}</h2>
+       </a>
+      </ion-item>
+    </ion-list>
+
+    <ion-list ng-show="role === 'observer'">
+      <ion-item ng-repeat="observer in observers" href="#/app/observer/{{observer.id}}">
+        <a class="item item-avatar" href="#">
+         <img ng-src="{{observer.img}}">
+         <h2>{{observer.name}}</h2>
+       </a>
+      </ion-item>
+    </ion-list>
+
+
+
   </ion-content>
 </ion-view>

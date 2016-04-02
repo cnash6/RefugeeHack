@@ -4,7 +4,7 @@
 // 'there' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'there.controllers' is found in controllers.js
-angular.module('there', ['ionic', 'firebase', 'there.factories', 'there.controllers'])
+angular.module('there', ['ionic', 'firebase', 'ti-segmented-control', 'there.factories', 'there.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -30,6 +30,15 @@ angular.module('there', ['ionic', 'firebase', 'there.factories', 'there.controll
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
+  })
+
+  .state('app.chat', {
+    url: '/chat',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/chat.html'
+      }
+    }
   })
 
   .state('app.people', {
@@ -62,4 +71,9 @@ angular.module('there', ['ionic', 'firebase', 'there.factories', 'there.controll
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/appointments');
-});
+})
+
+.constant('_', _)
+.constant('moment', moment)
+
+;

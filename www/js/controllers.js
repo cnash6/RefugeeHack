@@ -1,6 +1,6 @@
 angular.module('there.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $ionicTabsDelegate, $timeout, $state) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -31,18 +31,40 @@ angular.module('there.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     $timeout(function() {
       $scope.closeLogin();
     }, 1000);
   };
+
+  $scope.changeTab = function(state) {
+    // var currentState = $state.current.name;
+    var tabIndex = 0;
+    switch(state) {
+      case 'app.people':
+        tabIndex = 2;
+      break;
+
+      case 'app.appointments':
+        tabIndex = 1;
+      break;
+
+      case 'app.chat':
+        tabIndex = 0;
+      break;
+    }
+    $ionicTabsDelegate.select(tabIndex);
+    $state.go(state);
+  };
 })
 
-.controller('AppointmentsCtrl', function($scope, Appointments) {
+.controller('AppointmentsCtrl', function($scope, Appointments, Clients, Therapists, Interpretters, Observers, moment, _) {
   $scope.appointments = Appointments;
+  $scope.clients = Clients;
+  $scope.therapists = Therapists;
+  $scope.interpretters = Interpretters;
+  $scope.observers = Observers;
 
   $scope.addAppointment = function() {
     var appointment = {
@@ -53,16 +75,36 @@ angular.module('there.controllers', [])
       interpretter: 'Samuel',
     };
     $scope.appointments.$add(appointment);
-  }
+  };
+
+  $scope.getClient = function(clientName) {
+      return _.find($scope.clients, {'name': clientName});
+  };
+
+  $scope.getClientImage = function(clientName) {
+    var client = $scope.getClient(clientName);
+    if (client) {
+      return client.img;
+    } else {
+      return null;
+    }
+  };
 })
 
 .controller('AppointmentCtrl', function($scope, $stateParams) {
 })
 
 .controller('PeopleCtrl', function($scope) {
+
+  $scope.role = 'client';
+
+  $scope.selectRole = function(role) {
+      $scope.role = role;
+  };
+
 })
 
-.controller('ChatroomCtrl', function($scope) {
+.controller('ChatCtrl', function($scope) {
 
 })
 

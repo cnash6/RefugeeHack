@@ -1,19 +1,19 @@
 <ion-view view-title="Appointments">
+  <ion-header-bar class="top there-top-bar">
+     <h1 class="title">Appointments</h1>
+     <button class="button button-icon ion-plus" ng-click="addAppointment()">
+     </button>
+   </ion-header-bar>
   <ion-content>
-    <ion-header-bar class="top">
-       <h1 class="title">Appointments</h1>
-       <button class="button button-icon ion-plus" ng-click="addAppointment()">
-       </button>
-     </ion-header-bar>
-
     <ion-list>
       <ion-item ng-repeat="appointment in appointments" href="#/app/appointments/{{appointment.id}}">
-
-        <div>Client: {{appointment.client}}</div>
-        <div>Interpretter: {{appointment.interpretter}}</div>
-        <div>Time: {{appointment.startdate | date: 'mediumTime'}}</div>
-        <div>Date: {{appointment.startdate | date: 'longDate'}}</div>
-
+        <a class="item item-avatar" href="#">
+         <img ng-src="{{getClientImag()}}">
+         <h2>{{appointment.client}}</h2>
+         <h3>Interpretter: {{appointment.interpretter}}</h3>
+         <h4>Time: {{appointment.startdate | date: 'mediumTime'}}</h4>
+         <h4>Date: {{appointment.startdate | date: 'longDate'}}</h4>
+       </a>
       </ion-item>
     </ion-list>
   </ion-content>

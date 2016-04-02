@@ -1,9 +1,16 @@
 <ion-nav-view name="menuContent"></ion-nav-view>
-<ion-footer-bar align-title="left" class="bar-assertive">
-  <div class="buttons">
-    <button class="button">Appointments</button>
-  </div>
-  <div class="buttons">
-    <button class="button">People</button>
-  </div>
-</ion-footer-bar>
+<ion-tabs class="tabs-positive tabs-icon-top there-bottom-bar">
+
+  <ion-tab title="Chat" icon-on="ion-ios-chatbubble" icon-off="ion-ios-chatbubble-outline" ng-click="changeTab('app.chat')">
+    <!-- Tab 1 content -->
+  </ion-tab>
+
+  <ion-tab title="Appointments" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline" ng-click="changeTab('app.appointments')">
+    <!-- Tab 1 content -->
+  </ion-tab>
+
+  <ion-tab title="People" icon-on="ion-ios-people" icon-off="ion-ios-people-outline" ng-click="changeTab('app.people')">
+    <!-- Tab 2 content -->
+  </ion-tab>
+
+</ion-tabs>
